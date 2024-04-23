@@ -21,16 +21,15 @@ Our input is stored in the "attempt" char array, which has a size of 0x30 bytes 
 
 ![image](https://github.com/0necloud/CTF-Writeups/assets/60743000/78d21a9f-ba96-4c7e-a31b-cde4735639cb)
 
-We can test this by supplying a long string of As. Notice that the program has segfaulted on our 1/5th attempt.
+We can test this by supplying a long string of `A`s. Notice that the program has segfaulted on our 1/5th attempt.
 
 ![image](https://github.com/0necloud/CTF-Writeups/assets/60743000/5ef5c41d-2188-48a1-a098-9b0dd49fe943)
 
-We can try to take a peek of what is happening under the hood by using the GNU Debugger (GDB). When we supply a long string of `A`s to our program, notice that the stack is overflowed and filled with a bunch of them.
+We can try to take a peek of what is happening under the hood by using the GNU Debugger (GDB). When we supply a long string of As to our program, notice that the stack is overflowed and filled with a bunch of them.
 
 ![image](https://github.com/0necloud/CTF-Writeups/assets/60743000/af2218cd-9fd3-44ae-8d05-3e2751ae7de3)
 
-Usually with buffer overflow attacks, I expect the Instruction Pointer to be overflowed. However, the screenshot clearly shows that the RIP still holds a value of `0x0000000000401564`.
-However, our return address (RSP+0, which ret pops and jumps to) is filled with As. I was stuck and confused for quite some time but came across [this article](https://www.ired.team/offensive-security/code-injection-process-injection/binary-exploitation/64-bit-stack-based-buffer-overflow): 
+Usually with buffer overflow attacks, I expect the Instruction Pointer to be overflowed. However, the screenshot clearly shows that the RIP still holds a value of `0x0000000000401564`,but our return address (RSP+0, which ret pops and jumps to) is filled with As. I was stuck and confused for quite some time but came across [this article](https://www.ired.team/offensive-security/code-injection-process-injection/binary-exploitation/64-bit-stack-based-buffer-overflow): 
 
 > The reason the RIP was not overflowed (technically it was, as we saw in the above screenshot, but there's more to it), is because the AAAAAAAA (0x4141414141414141) is considered a non-canonical memory address, or, in other words, 0x4141414141414141 is a 64-bit wide address and current CPUs prevent applications and OSes to use 64-bit wide addresses. 
 
@@ -41,7 +40,7 @@ However, our return address (RSP+0, which ret pops and jumps to) is filled with 
 ### Using GDB to find the payload offset
 Although the RIP is not overflowed, we know that ret still pops the return address off RSP+0. Our next step is to find out how many As we need to supply into the program before RSP+0 gets overflowed.
 
-We can achieve this by using the `pattern create` command in GDB, using the command's output as input into the program, and using the `pattern search` command to get the offset.
+We can achieve this by using the `pattern create` command in GDB, using the command's output as input into the program, and using the `pattern search` command to get the offset before the return address is overflowed.
 
 ![image](https://github.com/0necloud/CTF-Writeups/assets/60743000/23eed616-82ee-41f1-b488-e81b45d94cf5)
 
