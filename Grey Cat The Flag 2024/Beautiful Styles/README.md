@@ -10,12 +10,12 @@ http://challs.nusgreyhats.org:3333
 # Approach
 Entering the website, we are greeted with the following landing page, consisting of a source code of some web content and also an input for CSS styling.
 
-![image](https://github.com/0necloud/CTF-Writeups/assets/60743000/f67d1020-13d8-44fc-a88c-bca334fe0172)
+![Landing Page](../images/beautiful-styles-1.png)
 
 After clicking on the submit button, we are redirected to another page `/submission/submission_id` showing us the preview of how our CSS input has changed the styling of the web content. 
 There is also a button to submit our code for judging, which is likely visited by some kind of admin bot.
 
-![image](https://github.com/0necloud/CTF-Writeups/assets/60743000/b66a0ce1-9f75-4456-804c-bf06fdb01a6a)
+![Submission Page](../images/beautiful-styles-2.png)
 
 From the source code of the web content that they've shown us, we know that the flag is stored in an input tag, within the "value" attribute.
 To exploit CSS injection, we provide the following CSS:
@@ -45,13 +45,14 @@ Eventually, it builds up to the following:
 
 ...
 
-`input[value^=grey{X5S34RCH1fY0UC4NF1ND1T\}]`
-![image](https://github.com/0necloud/CTF-Writeups/assets/60743000/ae171454-33a9-43e5-a40d-55d0c0912f25)
+`input[value^=grey{X5S34RCH1fY0UC4NF1ND1T\}]`
+
+![Webhook Requests](../images/beautiful-styles-3.png)
 
 I have provided an automation script in this challenge folder. However, the script has to be run for each character of the flag, up until the last character of the flag `}` is present in the built `currentFlag` variable, which you will need to update each time you run the script. This is because I am not able to figure out a way to let the script know when our webhook gets called by the admin bot.
 
 For keeping track of our flag which is being "built", we can append a `?c={Current Flag Progress}` query parameter to our webhook URL (included in the script). This way, we can monitor which character is next in the flag via the webhook page.
 
-![image](https://github.com/0necloud/CTF-Writeups/assets/60743000/2aaf3447-f6e9-4f80-95db-1259aefab553)
+![Flag Progress](../images/beautiful-styles-4.png)
 
 Flag: `grey{X5S34RCH1fY0UC4NF1ND1T}`

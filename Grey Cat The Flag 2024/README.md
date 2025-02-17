@@ -1,5 +1,5 @@
 # Grey Cat The Flag 2024
-![greyctf_c](https://github.com/0necloud/CTF-Writeups/assets/60743000/51430757-f2a7-4dc1-9a44-3a952e08017c)
+![greyctf_banner](images/banner.jpg)
 
 ## About
 Grey Cat The Flag is an annual CTF hosted by NUS Greyhats.
@@ -68,5 +68,5 @@ There will be an onsite finals for the top 20 teams in the local category. Each 
 </td></tr> </table>
 
 ## Profile
-![greyctf_profile](https://github.com/0necloud/CTF-Writeups/assets/60743000/bb790995-1491-4174-8ad4-49d9ae8316bc)
+![greyctf_profile](images/profile.png)
 
