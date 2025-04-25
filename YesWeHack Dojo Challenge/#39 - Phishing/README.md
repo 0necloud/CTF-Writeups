@@ -183,3 +183,5 @@ It is worth mentioning that the node:vm module's documentation explicitly mentio
 > "The node:vm module is not a security mechanism. Do not use it to run untrusted code."
 
 Thus, greater emphasis should be placed on the sanitisation of the `sourcecode` input.
+
+![Challenge Completed](./pwned.jpeg)
