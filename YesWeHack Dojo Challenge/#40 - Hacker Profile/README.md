@@ -35,7 +35,7 @@ Next, let's look at how our input is handled:
 
 ```javascript
 // Take user profile properties
-var profile = decodeURIComponent("")
+var profile = decodeURIComponent("<USER_INPUT>")
 if ( profile.length == 0 ) {
     profile = "{}"
 }
@@ -209,10 +209,10 @@ With our crafted payload, we are able to
 ## Risk
 An attacker could exploit this vulnerability to perform Remote Code Execution (RCE) and run arbitrary JavaScript code, disclosing sensitive information such as environment variables, and even read files on the web server.
 
-**Remediation
+## Remediation
 The following methods could be used to prevent Prototype Pollution attacks
 - Use Object.create(proto) to create hacker profile objects with a custom prototype
 - Run Object.freeze(Object.prototype) to prevent modifications from being made on the default prototype
 - Add new WAF rules to prevent keywords such as "constructor" or "prototype" from being used as keys. However, this method is tricky to implement as there may be loopholes attackers can exploit to bypass such rules.
 
-![Challenge Completed](./pwned.jpeg)
+![Challenge Completed](./pwned.jpg)

@@ -1,4 +1,4 @@
-# Grey Cat The Flag 2024
+# Grey Cat The Flag 2024 [Qualifiers]
 ![greyctf_banner](images/banner.jpg)
 
 ## About
@@ -16,9 +16,9 @@ There will be an onsite finals for the top 20 teams in the local category. Each 
 ## Timeline
 | dates  | events | 
 | :------ | :------ |
-| 20th April, 12pm (GMT+8) to 21st April, 12pm (GMT+8) | Qualifiers, Online |
-| 27 July | Finals @ TBC | 
-| 3 August | GreyCTF Summit @ TBC | 
+| 20 April, 12pm to 21 April, 12pm (GMT+8) | Qualifiers, Online |
+| 27 July, 10am to 28 July, 10am (GMT+8) | Finals @ NUS COM1 | 
+| 10 August, 10am to 4pm (GMT+8) | GreyCTF Summit @ NUS COM1 | 
 
 
 ## Prizes
@@ -28,18 +28,18 @@ There will be an onsite finals for the top 20 teams in the local category. Each 
 
 | ranking  | prize | 
 | :------ | :------ |
-| 1st place | $2000 |
-| 2nd place | $1000 | 
-| 3rd place | $400 | 
+| 1st place | SGD 2000 |
+| 2nd place | SGD 1000 | 
+| 3rd place | SGD 400 | 
 
 </td><td>
 
-| dates  | events | 
+| ranking  | prize | 
 | :------ | :------ |
-| 1st place | $4000 |
-| 2nd place | $2000 | 
-| 3rd place |	$1000 | 
-| 4th-10th place | $400 | 
+| 1st place | SGD 4000 |
+| 2nd place | SGD 2000 | 
+| 3rd place |	SGD 1000 | 
+| 4th-10th place | SGD 400 | 
 | Secret 👀 | 👀👀 | 
 
 </td></tr> </table>
@@ -48,6 +48,7 @@ There will be an onsite finals for the top 20 teams in the local category. Each 
 # Stats
 <table>
 <tr><th> Team Placing </th><th> Challenges Solved </th></tr>
+<th colspan="2">Qualifiers</th>
 <tr><td>
 
 | Category  | Position | 
@@ -64,6 +65,20 @@ There will be an onsite finals for the top 20 teams in the local category. Each 
 | 3 | Web | Greyctf Survey |
 | 4 | Misc | Cats At The Beach |
 | 5 | Web | Beautiful Styles |
+
+</td></tr>
+<th colspan="2">Finals</th>
+<tr><td>
+
+| Category  | Position | 
+| :------ | :------: |
+| Local | 8 | 
+
+</td><td>
+
+| No.  | Category | Challenge |
+| :------ | :------: | :---- |
+| 1 | Misc | Poolside Paradise or Criminal Hideout |
 
 </td></tr> </table>
 
