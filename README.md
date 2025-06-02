@@ -15,6 +15,8 @@
 ### CTFs Scoring (I forgot to record *some*)
 | CTF | Position | Team | Date |
 | :--- | :---: | :--- | :--- |
+| Grey Cat The Flag 2025 Qualifiers | 24 / 776 (Global)</br>10 / 246 (Local) | Cybern3tic | 31 May - 1 June 2025 |
+| CDDC 2025 Qualifiers | 16 / ??? (Pre-Uni)</br>33 / ??? (Global) | JapaneseFrenchLoaf | 24 - 25 May 2025 |
 | Grey Cat The Flag 2024 Finals | 8 / 20 | JapaneseFrenchToast | 27 - 28 July 2024 |
 | Grey Cat The Flag 2024 Qualifiers | 23 / 406 (Global)</br>13 / 156 (Local) | JapaneseFrenchToast | 20 - 21 April 2024 |
 | LagNCrash 2023 | 9 / 87 | Ctrl 4lt D'Elite | 14 - 16 April 2023 |

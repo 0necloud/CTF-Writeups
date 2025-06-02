@@ -13,8 +13,8 @@ When we run the program, we are greeted with the following output:
 ![Program Output](../images/baby-bytes-1.png)
 
 We are presented the following information:
-1. An address for `choice`: 0x7ffd7892909c
-2. An address of a target function: 0x401289
+1. An address for `choice`: `0x7ffd7892909c`
+2. An address of a target function: `0x401289`
 
 It seems that this is a beginner pwn challenge, whereby we are supposed to overwrite the value in some address in order to invoke a function in the binary. Looking at the source code, we can see that the function in question is named `win()`:
 
@@ -71,9 +71,9 @@ After writing each of the 6 bytes to their respective addresses, we should nter 
 
 ### Testing on Server
 
-We can repeat the same process on the challenge server... except that the connection only lasts a few seconds and will most likely close when we are halfway overwriting the byte in each address. Therefore, we need to do this quickly, with the help of a pwntools script.
+We can repeat the same process on the challenge server... except that the connection only lasts a few seconds and will most likely close when we are halfway through overwriting the byte in each address. Therefore, we need to do this quickly, with the help of a pwntools script.
 
-I have added `solve.py` to this repository, which basically performs the same steps discussed previously, but automated :D
+I have added `solve.py` to this repository, which basically performs the same steps as previously discussed, but automated :D
 
 ![Flag](../images/baby-bytes-8.png)
 
