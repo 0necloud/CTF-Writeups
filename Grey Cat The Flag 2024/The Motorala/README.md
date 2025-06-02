@@ -1,3 +1,8 @@
+---
+layout: default
+title: The Motorala
+---
+
 # [PWN] The Motorala
 ## Description
 i bet u wont guess my pin
@@ -88,3 +93,5 @@ Running the **server's copy** of the program using `nc challs.nusgreyhats.org 30
 ![Flag](../images/the-motorala-10.png)
 
 Flag: `grey{g00d_w4rmup_for_p4rt_2_hehe}`
+
+Script: [solve.py](https://raw.githubusercontent.com/0necloud/CTF-Writeups/refs/heads/main/Grey Cat The Flag 2024/The Motorala/solve.py)

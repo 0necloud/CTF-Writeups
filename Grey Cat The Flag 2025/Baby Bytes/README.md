@@ -1,3 +1,8 @@
+---
+layout: default
+title: Baby Bytes
+---
+
 # [EZPZ] Baby Bytes
 ## Description
 Here's a beginner pwn challenge for all my baby pwners! Overwrite the saved return address to the address of the win function, and enjoy your shell!
@@ -78,3 +83,5 @@ I have added `solve.py` to this repository, which basically performs the same st
 ![Flag](../images/baby-bytes-8.png)
 
 Flag: `grey{d1D_y0u_3njoY_youR_b4bY_B1tes?}`
+
+Script: [solve.py](https://raw.githubusercontent.com/0necloud/CTF-Writeups/refs/heads/main/Grey Cat The Flag 2025/Baby Bytes/solve.py)

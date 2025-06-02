@@ -1,3 +1,8 @@
+---
+layout: default
+title: Beautiful Styles
+---
+
 # [WEB] Beautiful Styles
 # Description
 I opened a contest to see who could create the most beautiful CSS styles. Feel free to submit your CSS styles to me and I will add them to my website to judge them. I'll even give you a sample of my site to get you started. 
@@ -56,3 +61,5 @@ For keeping track of our flag which is being "built", we can append a `?c={Curre
 ![Flag Progress](../images/beautiful-styles-4.png)
 
 Flag: `grey{X5S34RCH1fY0UC4NF1ND1T}`
+
+Script: [solve.py](https://raw.githubusercontent.com/0necloud/CTF-Writeups/refs/heads/main/Grey Cat The Flag 2024/Beautiful Styles/solve.py)

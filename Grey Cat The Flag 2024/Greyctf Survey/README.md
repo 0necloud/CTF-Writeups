@@ -1,3 +1,8 @@
+---
+layout: default
+title: Greyctf Survey
+---
+
 # [WEB] Greyctf Survey (Top 20 Writeups)
 ## Description
 Your honest feedback is appreciated :) (but if you give us a good rating we'll give you a flag)
@@ -17,6 +22,7 @@ Using BurpSuite to intercept our requests, we can see that the request sent to t
 
 Analysing the source code provided, we see that this "vote" key must hold a value `-1 < n < 1` for our flag to be displayed. Furthermore, there exists a second variable `score`, which holds a value of -0.42069.
 When we submit our vote, the "vote" value is added to the score, and only when the sum is greater than 1 will the flag be returned to us.
+
 ![Source Code Analysis](../images/greyctf-survey-3.png)
 
 In order to exploit this, we need to exploit a mysterious behaviour revolving around JavaScript's `parseInt()` function.

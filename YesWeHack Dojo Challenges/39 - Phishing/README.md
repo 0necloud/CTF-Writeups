@@ -1,3 +1,8 @@
+---
+layout: default
+title: \#39 - Phishing
+---
+
 ## Description
 The node:vm module provides an environment for executing code within an isolated context, allowing developers to define a restricted set of global variables. However, due to JavaScript's prototype inheritance, an attacker can escape this sandbox by leveraging the constructor property of objects. By accessing `this.constructor.constructor`, which ultimately resolves to the global Function constructor, an attacker can execute arbitrary code outside the intended sandbox, potentially leaking sensitive data from the main process.
 
