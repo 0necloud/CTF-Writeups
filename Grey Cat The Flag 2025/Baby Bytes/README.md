@@ -1,8 +1,3 @@
----
-layout: default
-title: Baby Bytes
----
-
 # [EZPZ] Baby Bytes
 ## Description
 Here's a beginner pwn challenge for all my baby pwners! Overwrite the saved return address to the address of the win function, and enjoy your shell!

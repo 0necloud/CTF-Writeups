@@ -1,9 +1,5 @@
----
-layout: default
-title: Grey Cat The Flag 2024
----
-
 # Grey Cat The Flag 2024 [Qualifiers]
+
 ![greyctf_banner](images/banner.jpg)
 
 ## Writeups

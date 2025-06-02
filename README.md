@@ -1,8 +1,3 @@
----
-layout: default
-title: CTF Writeups
----
-
 # CTF Writeups
 
 <div align="center">

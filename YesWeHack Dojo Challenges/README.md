@@ -1,8 +1,3 @@
----
-layout: default
-title: YesWeHack Dojo Challenges
----
-
 # YesWeHack Dojo Challenges
 
 ## Writeups

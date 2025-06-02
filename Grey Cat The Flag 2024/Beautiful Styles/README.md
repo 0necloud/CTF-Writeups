@@ -1,10 +1,5 @@
----
-layout: default
-title: Beautiful Styles
----
-
 # [WEB] Beautiful Styles
-# Description
+## Description
 I opened a contest to see who could create the most beautiful CSS styles. Feel free to submit your CSS styles to me and I will add them to my website to judge them. I'll even give you a sample of my site to get you started. 
 Flag only consists of numbers and uppcase letters and the lower character f.
 

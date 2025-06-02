@@ -1,8 +1,3 @@
----
-layout: default
-title: \#40 - Hacker Profile
----
-
 ## Description
 This challenge revolves around a web application that allows users to supply JSON data to build a user profile by recursively merging the user-supplied JSON object into existing objects. However, the Web Application Firewall (WAF) was not implemented properly, allowing attackers to supply input that could pollute the JavaScript Object.prototype. Although the WAF is blacklisting the string `__proto__`, which should prevent attackers from injecting it as a key, it can be bypassed by performing prototype pollution via the Object's constructor instead.
 

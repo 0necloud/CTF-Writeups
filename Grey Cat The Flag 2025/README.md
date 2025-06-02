@@ -1,8 +1,3 @@
----
-layout: default
-title: Grey Cat The Flag 2025
----
-
 # Grey Cat The Flag 2025
 
 ## Writeups

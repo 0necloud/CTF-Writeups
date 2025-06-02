@@ -1,8 +1,3 @@
----
-layout: default
-title: The Motorala
----
-
 # [PWN] The Motorala
 ## Description
 i bet u wont guess my pin
