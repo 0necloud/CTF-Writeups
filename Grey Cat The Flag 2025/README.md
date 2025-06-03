@@ -2,6 +2,7 @@
 
 ## Writeups
 - [Baby Bytes](./Baby%20Bytes/)
+- [Countle Training Centre](./Countle%20Training%20Centre/)
 
 ## About
 Grey Cat The Flag is an annual CTF hosted by NUS Greyhats.
@@ -86,4 +87,4 @@ There will be an onsite finals for the top 20 teams in the local category. Each 
 
 
 ## Profile
-![greyctf_profile](images/profile.png)
+![greyctf_profile](./images/profile.png)

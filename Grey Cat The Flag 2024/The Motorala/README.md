@@ -12,22 +12,22 @@ Furthermore, I was not the one on my team who solved the challenge, but I did ge
 
 When we run the program, we are greeted with the following output:
 
-![Program Output](../images/the-motorala-1.png)
+![Program Output](./images/program_output.png)
 
 It seems that the program checks for the correct PIN before presenting us with our flag.
 
 Analysing the source code provided, we can see that the login() function, which asks for our PIN input, consists of a `scanf()` function without performing any bounds checking.
 Our input is stored in the "attempt" char array, which has a size of 0x30 bytes (48 bytes in decimal). However, since our `scanf()` function does not specify the maximum number of characters that we can input, e.g. `scanf("%30s", attempt);`, we can provide an input of more than 48 bytes to cause a **buffer overflow**.
 
-![Source Code Analysis](../images/the-motorala-2.png)
+![Source Code Analysis](./images/source_code_analysis.png)
 
 We can test this by supplying a long string of `A`s. Notice that the program has segfaulted on our 1/5th attempt.
 
-![Segmentation Fault](../images/the-motorala-3.png)
+![Segmentation Fault](./images/segmentation_fault.png)
 
 We can try to take a peek of what is happening under the hood by using the GNU Debugger (GDB). When we supply a long string of As to our program, notice that the stack is overflowed and filled with a bunch of them.
 
-![GDB Output](../images/the-motorala-4.png)
+![GDB Output](./images/gdb_output.png)
 
 Usually with buffer overflow attacks, I expect the Instruction Pointer to be overflowed. However, the screenshot clearly shows that the RIP still holds a value of `0x0000000000401564`,but our return address (RSP+0, which ret pops and jumps to) is filled with As. I was stuck and confused for quite some time but came across [this article](https://www.ired.team/offensive-security/code-injection-process-injection/binary-exploitation/64-bit-stack-based-buffer-overflow): 
 
@@ -42,16 +42,16 @@ Although the RIP is not overflowed, we know that ret still pops the return addre
 
 We can achieve this by using the `pattern create` command in GDB, using the command's output as input into the program, and using the `pattern search` command to get the offset before the return address is overflowed.
 
-![GDB Pattern Create](../images/the-motorala-5.png)
+![GDB Pattern Create](./images/gdb_pattern_create.png)
 
-![Overflow Offset](../images/the-motorala-6.png)
+![Overflow Offset](./images/overflow_offset.png)
 
 Pattern offset: `72`
 
 With the offset, we now need to find the address of the target function that we want our login function to return to. According to the source code provided, the `view_message()` function opens flag.txt and prints it out. 
 Thus, we will need to find its address, which can be done with GDB's `info function` command:
 
-![Address of view_message()](../images/the-motorala-7.png)
+![Address of view_message()](./images/address_of_target_function.png)
 
 Target Function address: `0x000000000040138e`
 
@@ -59,7 +59,7 @@ Finally, we can craft our payload using `python2 -c 'print("A" * 72 + "\x8e\x13\
 
 By running the **local copy** of the program using `./chall < in.bin`, we can see that the test flag was printed:
 
-![Local Test Flag Displayed](../images/the-motorala-8.png)
+![Local Test Flag Displayed](./images/local_flag_displayed.png)
 
 This was as far as I went during the CTF. The payload did not work on the server.
 
@@ -81,12 +81,12 @@ Thus, to exploit the program on the server, we need to create a new payload by p
 
 The address `0x40101a` can be found by using the [ROPgadget](https://github.com/JonathanSalwan/ROPgadget) tool.
 
-![ROP Gadgets](../images/the-motorala-9.png)
+![ROP Gadgets](./images/rop_gadgets.png)
 
 Running the **server's copy** of the program using `nc challs.nusgreyhats.org 30211 < in.bin` prints the actual flag:
 
-![Flag](../images/the-motorala-10.png)
+![Flag](./images/flag_revealed.png)
 
 Flag: `grey{g00d_w4rmup_for_p4rt_2_hehe}`
 
-Script: [solve.py](https://raw.githubusercontent.com/0necloud/CTF-Writeups/refs/heads/main/Grey Cat The Flag 2024/The Motorala/solve.py)
+Script: [solve.py](https://raw.githubusercontent.com/0necloud/CTF-Writeups/refs/heads/main/Grey%20Cat%20The%20Flag%202024/The%20Motorala/solve.py)

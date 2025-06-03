@@ -1,0 +1,14 @@
+---
+---
+
+@import "{{ site.theme }}";
+
+table {
+  display: block;
+  overflow-x: auto;
+  white-space: nowrap;
+}
+
+code.highlighter-rouge {
+  word-break: break-word;
+}

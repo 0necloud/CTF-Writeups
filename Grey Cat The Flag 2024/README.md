@@ -1,6 +1,6 @@
 # Grey Cat The Flag 2024 [Qualifiers]
 
-![greyctf_banner](images/banner.jpg)
+![greyctf_banner](./images/banner.jpg)
 
 ## Writeups
 - [Baby Web](./Baby%20Web/)
@@ -109,4 +109,4 @@ There will be an onsite finals for the top 20 teams in the local category. Each 
 
 
 ## Profile
-![greyctf_profile](images/profile.png)
+![greyctf_profile](./images/profile.png)

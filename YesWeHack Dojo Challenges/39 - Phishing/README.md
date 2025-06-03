@@ -125,7 +125,7 @@ and attempt to leak out the environment variables. In JavaScript, we typically r
 
 But what should our input variables be? We have previously concluded that our `website` input should resolve to `dójó-yeswehack.com`, however, simply inputting the string as it is will return us an error:
 
-![Site Already Purchased](./site_already_purchased.png)
+![Site Already Purchased](./images/site_already_purchased.png)
 
 If we review the source code and look at how the database is initalised, we can observe that the entry already exists prior to our submission:
 
@@ -167,7 +167,7 @@ Going back to the source code, we can observe that we are not really able to man
 ## PoC
 Now, piecing together all the information, we know that our `website` input should be `xn--dj-yeswehack-0hbb.com` and we have a way to access the global context outside the Node.js VM. We can attempt to console.log out the environment variables by supplying the `sourcecode` input with the string `(this.constructor.constructor("console.log(process.env)"))()`. The environment variables, containing our FLAG, were then exposed.
 
-![Environment Variables Exposed](./environment_variables_exposed.png)
+![Environment Variables Exposed](./images/environment_variables_exposed.png)
 
 **FLAG: `FLAG{Y0u_ju5t_h4v3_t0_dive_d33p}`**
 
@@ -184,4 +184,4 @@ It is worth mentioning that the node:vm module's documentation explicitly mentio
 
 Thus, greater emphasis should be placed on the sanitisation of the `sourcecode` input.
 
-![Challenge Completed](./pwned.jpg)
+![Challenge Completed](./images/pwned.jpg)

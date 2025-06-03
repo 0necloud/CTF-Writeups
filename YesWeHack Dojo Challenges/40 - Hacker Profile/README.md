@@ -121,7 +121,7 @@ where the `toString()` function is a default function defined as part of the Jav
 }
 ```
 
-![TypeError Thrown Successfully](./typeerror_thrown_successfully.png)
+![TypeError Thrown Successfully](./images/typeerror_thrown_successfully.png)
 
 As we can see, the payload was successful as the else statement in the catch block is rendering the error, but without any error logs. We have achieved Goal #1 of reaching the catch block. However, we want the IF condition to return a truthy value for the `eval()` function to run, and hence we need to achieve Goal #2 of prototype pollution.
 
@@ -135,7 +135,7 @@ In typical fashion, we can achieve prototype pollution by merging an object with
 
 Unfortunately, this example payload will not work in this case due to the Web Application Firewall which blacklists the string `"__proto__"`, replacing it with `"Nah_I_don_t_think_so"`:
 
-![WAF Blacklisting __proto__ String](./waf_blacklisting_proto_string.png)
+![WAF Blacklisting __proto__ String](./images/waf_blacklisting_proto_string.png)
 
 Fortunately, we can bypass this restriction through another method by accessing the prototype through the object's constructor:
 
@@ -184,7 +184,7 @@ Combine this payload with the one from Goal #1 and we have our final payload:
 
 If we input the payload, the flag is revealed:
 
-![Flag Revealed](./flag_revealed.png)
+![Flag Revealed](./images/flag_revealed.png)
 
 We can modify our `debug.code` to leak more sensitive data from the server. Since the following lines of code is present in the setup, we have access to the File System module:
 
@@ -194,7 +194,7 @@ const fs = require("fs")
 
 Thus, if for example, we were to change `debug.code` to something like `fs.readFileSync('/etc/passwd', 'utf-8')`, we could leak out the usernames of user accounts on the server, a huge compromise to data confidentiality:
 
-![Reading Files on Server](./reading_files_on_server.png)
+![Reading Files on Server](./images/reading_files_on_server.png)
 
 ## Proof of Concept
 With our crafted payload, we are able to
@@ -215,4 +215,4 @@ The following methods could be used to prevent Prototype Pollution attacks
 - Run Object.freeze(Object.prototype) to prevent modifications from being made on the default prototype
 - Add new WAF rules to prevent keywords such as "constructor" or "prototype" from being used as keys. However, this method is tricky to implement as there may be loopholes attackers can exploit to bypass such rules.
 
-![Challenge Completed](./pwned.jpg)
+![Challenge Completed](./images/pwned.jpg)
