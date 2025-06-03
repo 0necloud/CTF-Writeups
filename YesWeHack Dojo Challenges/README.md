@@ -3,6 +3,7 @@
 ## Writeups
 - [#39 - Phishing](./39%20-%20Phishing/)
 - [#40 - Hacker Profile](./40%20-%20Hacker%20Profile/)
+- [#41 - Ruby Treasure](./40%20-%20Ruby%20Treasure/)
 
 ## About
 As quoted from their website:

@@ -11,4 +11,13 @@ table {
 
 code.highlighter-rouge {
   word-break: break-word;
+  display: inline-block;
+}
+
+li {
+  word-break: break-word;
+}
+
+p {
+  word-break: break-word;
 }
