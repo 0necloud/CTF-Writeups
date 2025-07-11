@@ -72,8 +72,8 @@ There will be an onsite finals for the top 20 teams in the local category. Each 
     <td>
       <table>
         <tr><th>Category</th><th>Position</th></tr>
-        <tr><td>Global</td><td>23</td></tr>
-        <tr><td>Local</td><td>13</td></tr>
+        <tr><td>Global</td><td>23 / 406</td></tr>
+        <tr><td>Local</td><td>13 / 156</td></tr>
       </table>
     </td>
     <td>
@@ -95,7 +95,7 @@ There will be an onsite finals for the top 20 teams in the local category. Each 
     <td>
       <table>
         <tr><th>Category</th><th>Position</th></tr>
-        <tr><td>Local</td><td>8</td></tr>
+        <tr><td>Local</td><td>8 / 20</td></tr>
       </table>
     </td>
     <td>

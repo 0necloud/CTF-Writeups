@@ -18,11 +18,11 @@ There will be an onsite finals for the top 20 teams in the local category. Each 
 
 ## Timeline
 
-| dates  | events | 
-| :------ | :------ |
-| 31 May, 8pm to 1 June, 8pm (GMT+8) | Qualifiers, Online |
-| 28 June, 10am to 29 June, 10am (GMT+8) | Finals @ NUS COM1 | 
-| 5 July, 9am to 5.30pm (GMT+8) | GreyCTF Summit @ NUS COM1 | 
+| dates                                  | events                    |
+| :------------------------------------- | :------------------------ |
+| 31 May, 8pm to 1 June, 8pm (GMT+8)     | Qualifiers, Online        |
+| 28 June, 10am to 29 June, 10am (GMT+8) | Finals @ NUS COM1         |
+| 5 July, 9am to 5.30pm (GMT+8)          | GreyCTF Summit @ NUS COM1 |
 
 
 ## Prizes
@@ -62,6 +62,7 @@ There will be an onsite finals for the top 20 teams in the local category. Each 
     <th>Team Placing</th>
     <th>Challenges Solved</th>
   </tr>
+
   <tr>
     <th colspan="2">Qualifiers</th>
   </tr>
@@ -69,8 +70,8 @@ There will be an onsite finals for the top 20 teams in the local category. Each 
     <td>
       <table>
         <tr><th>Category</th><th>Position</th></tr>
-        <tr><td>Global</td><td>24</td></tr>
-        <tr><td>Local</td><td>10</td></tr>
+        <tr><td>Global</td><td>24 / 776</td></tr>
+        <tr><td>Local</td><td>10 / 246</td></tr>
       </table>
     </td>
     <td>
@@ -83,6 +84,26 @@ There will be an onsite finals for the top 20 teams in the local category. Each 
       </table>
     </td>
   </tr>
+
+ <tr>
+    <th colspan="2">Finals</th>
+  </tr>
+  <tr>
+    <td>
+      <table>
+        <tr><th>Category</th><th>Position</th></tr>
+        <tr><td>Local</td><td>16 / 20</td></tr>
+      </table>
+    </td>
+    <td>
+      <table>
+        <tr><th>No.</th><th>Category</th><th>Challenge</th></tr>
+        <tr><td>1</td><td>Misc</td><td>Authlab</td></tr>
+        <tr><td>2</td><td>Web</td><td>A4 Toilet Paper</td></tr>
+      </table>
+    </td>
+  </tr>
+</table>
 </table>
 
 

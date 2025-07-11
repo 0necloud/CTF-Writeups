@@ -16,6 +16,8 @@
 
 | CTF | Position | Team | Date |
 | --- | --- | --- | --- |
+| Grey Cat The Flag 2025 Finals | 16 / 20 | Cybern3tic | 28 - 29 June 2025 |
+| CDDC 2025 Finals | 10 / 43 (Pre-Uni) | JapaneseFrenchLoaf | 11 - 12 Jun 2025 |
 | Grey Cat The Flag 2025 Qualifiers | 24 / 776 (Global)<br>10 / 246 (Local) | Cybern3tic | 31 May - 1 June 2025 |
 | CDDC 2025 Qualifiers | 16 / ??? (Pre-Uni)<br>33 / ??? (Global) | JapaneseFrenchLoaf | 24 - 25 May 2025 |
 | Grey Cat The Flag 2024 Finals | 8 / 20 | JapaneseFrenchToast | 27 - 28 July 2024 |

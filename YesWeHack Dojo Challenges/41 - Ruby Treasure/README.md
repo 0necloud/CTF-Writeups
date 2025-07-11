@@ -2,7 +2,7 @@
 This challenge revolves around a Ruby Web Application that allows users to supply an input to navigate to a corresponding page (i.e., login, collection). However, due to inadequate validation and sanitisation of user input, a malicious attacker may supply a specially crafted input to execute commands on the web server. This is primarily due to quirks related to regular expressions in Ruby, where the use of `^` and `$` matches the start and end of a line, rather than the entire string. As a results, an attacker can bypass a regular expression simply by supplying a line feed (`\n`) followed by a line that matches the expected pattern, thereby passing validation.
 
 ## Exploitation
-To identify potential vulnerabilities within an application,  analysing the source code is an effective approach as it reveals insecure coding practices, such as improper input validation or the misuse of certain libraries. In this scenario, we are presented with a web application that accepts a user input, which is then parsed by the program - potentially influencing the contents returned to the user.
+To identify potential vulnerabilities within an application, analysing the source code is an effective approach as it reveals insecure coding practices, such as improper input validation or the misuse of certain libraries. In this scenario, we are presented with a web application that accepts a user input, which is then parsed by the program - potentially influencing the contents returned to the user.
 
 ### Code Analysis
 The first step in performing our taint tracking is to examine how our input is being handled by the program. In this scenario, a Web Application Firewall URL-encodes the user input before it reaches the web server.

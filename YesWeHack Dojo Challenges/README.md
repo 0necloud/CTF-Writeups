@@ -3,7 +3,8 @@
 ## Writeups
 - [#39 - Phishing](./39%20-%20Phishing/)
 - [#40 - Hacker Profile](./40%20-%20Hacker%20Profile/)
-- [#41 - Ruby Treasure](./40%20-%20Ruby%20Treasure/)
+- [#41 - Ruby Treasure](./41%20-%20Ruby%20Treasure/)
+- [#42 - Hex Color Palette](./42%20-%20Hex%20Color%20Palette/)
 
 ## About
 As quoted from their website:
