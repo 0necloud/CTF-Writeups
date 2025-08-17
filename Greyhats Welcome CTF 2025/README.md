@@ -4,15 +4,15 @@
 - [Ski Buddy](./Ski%20Buddy/)
 - [Rusty Vending Machine](./Rusty%20Vending%20Machine/)
 - [Blast From The Past](./Blast%20From%20The%20Past/)
-- [Python Challenge](./Python%Challenge/)
+- [Python Challenge](./Python%20Challenge/)
 
 ## About
 This is a (supposedly) beginner-friendly CTF hosted by the NUS Greyhats.
 
 ## Timeline
-| dates  | events | 
-| :------ | :------ |
-| 16 August, 9am to 17 August, 9pm (GMT+8) | Online CTF |
+| dates                                    | events                    |
+| :--------------------------------------- | :------------------------ |
+| 16 August, 9am to 17 August, 9pm (GMT+8) | Online CTF                |
 
 # Stats
 <table>
@@ -44,7 +44,6 @@ This is a (supposedly) beginner-friendly CTF hosted by the NUS Greyhats.
       </table>
     </td>
   </tr>
-</table>
 </table>
 
 ## Profile

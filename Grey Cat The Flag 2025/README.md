@@ -23,7 +23,6 @@ There will be an onsite finals for the top 20 teams in the local category. Each 
 | 28 June, 10am to 29 June, 10am (GMT+8) | Finals @ NUS COM1         |
 | 5 July, 9am to 5.30pm (GMT+8)          | GreyCTF Summit @ NUS COM1 |
 
-
 ## Prizes
 <table>
   <tr>
@@ -102,7 +101,6 @@ There will be an onsite finals for the top 20 teams in the local category. Each 
       </table>
     </td>
   </tr>
-</table>
 </table>
 
 ## Profile
