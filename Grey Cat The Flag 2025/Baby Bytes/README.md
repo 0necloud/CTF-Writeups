@@ -21,7 +21,6 @@ It seems that this is a beginner pwn challenge, whereby we are supposed to overw
 ![Source Code](./images/source_code.png)
 
 ### Source Code Analysis
-
 The `win()` function gives us a shell, but it is not called anywhere in the `main()` function. Therefore, we can assume that we are supposed to overwrite the return address of `main()` to force the program's execution to jump to `win()` when `main()` returns.
 
 From both code analysis and running the binary, we can infer that we have the following capabilities:
@@ -35,7 +34,6 @@ Given the luxury of being offered the literal steps to solve the challenge (as s
 4. Return from `main()` to jump to our overwritten return address
 
 ### Dynamic Analysis
-
 Let's start off by finding where the return address of `main()` is stored. In pwndbg (any debugger works really), we shall find the address where `main()` returns by first running the command `disas main` to disassemble the `main()` function and finding the address where the `ret` mnemonic is located. Afterwards, place a break point there using the command `break *<ADDRESS>`:
 
 ![Address of ret](./images/address_of_ret.png)
@@ -47,7 +45,6 @@ Run the program and when the program asks you to choose an option, enter `3` to 
 As seen from the above screenshot, the address of the top of the stack is `0x7fffffffdde8`. When the program was run to obtain the screenshot, the address of `choice` was `0x7ffc1581f88c`. Subtracting the two values, we get `0x1C`. This means that the return address of `main()` is stored at `[<ADDRESS OF CHOICE> + 0x1C]`. We also need to replace the address stored at the top of the stack (currently `0x7fffffffdde8`) with `0x000000401289`.
 
 ### Testing Locally
-
 Let's start open up a new terminal and run the program.
 
 ![Address of choice](./images/address_of_choice.png)
@@ -70,7 +67,6 @@ After writing each of the 6 bytes to their respective addresses, we should nter 
 ![Entered win() function](./images/entered_win_function.png)
 
 ### Testing on Server
-
 We can repeat the same process on the challenge server... except that the connection only lasts a few seconds and will most likely close when we are halfway through overwriting the byte in each address. Therefore, we need to do this quickly, with the help of a pwntools script.
 
 I have added `solve.py` to this repository, which basically performs the same steps as previously discussed, but automated :D

@@ -141,3 +141,5 @@ Input validation and sanitisation should be incorporated before the user input i
 Additionally, error messages returned to the user should avoid including the XML parser's error messages as these could unintentionally leak file paths, stack traces, and in this scenario, the contents of arbitrary files.
 
 ![Challenge Completed](./images/pwned.jpg)
+
+![Best Writeup](./images/winner.jpg)

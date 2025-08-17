@@ -17,7 +17,6 @@ Participants who are eligible for the local category but opts in for the open ca
 There will be an onsite finals for the top 20 teams in the local category. Each team may send up to 4 people for the onsite finals.
 
 ## Timeline
-
 | dates                                  | events                    |
 | :------------------------------------- | :------------------------ |
 | 31 May, 8pm to 1 June, 8pm (GMT+8)     | Qualifiers, Online        |
@@ -105,7 +104,6 @@ There will be an onsite finals for the top 20 teams in the local category. Each 
   </tr>
 </table>
 </table>
-
 
 ## Profile
 ![greyctf_profile](./images/profile.png)

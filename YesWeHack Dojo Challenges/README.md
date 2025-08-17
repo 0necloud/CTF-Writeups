@@ -5,6 +5,7 @@
 - [#40 - Hacker Profile](./40%20-%20Hacker%20Profile/)
 - [#41 - Ruby Treasure](./41%20-%20Ruby%20Treasure/)
 - [#42 - Hex Color Palette](./42%20-%20Hex%20Color%20Palette/)
+- [#43 - CCTV Manager](./42%20-%20CCTV%20Manager/)
 
 ## About
 As quoted from their website:

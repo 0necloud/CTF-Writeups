@@ -16,6 +16,7 @@
 
 | CTF | Position | Team | Date |
 | --- | --- | --- | --- |
+| Greyhats Welcome CTF 2025 | 1 / 126 | Cybern3tic | 16 - 17 August 2025 |
 | Grey Cat The Flag 2025 Finals | 16 / 20 | Cybern3tic | 28 - 29 June 2025 |
 | CDDC 2025 Finals | 10 / 43 (Pre-Uni) | JapaneseFrenchLoaf | 11 - 12 Jun 2025 |
 | Grey Cat The Flag 2025 Qualifiers | 24 / 776 (Global)<br>10 / 246 (Local) | Cybern3tic | 31 May - 1 June 2025 |
@@ -34,6 +35,7 @@
 ### Writeups
 - [Grey Cat The Flag 2024](./Grey%20Cat%20The%20Flag%202024/)
 - [Grey Cat The Flag 2025](./Grey%20Cat%20The%20Flag%202025/)
+- [Greyhats Welcome CTF 2025](./Greyhats%20Welcome%20CTF%202025/)
 - [YesWeHack Dojo Challenges](./YesWeHack%20Dojo%20Challenges/)
 
 ### [RSHub](https://0necloud.github.io/RSHub/)
