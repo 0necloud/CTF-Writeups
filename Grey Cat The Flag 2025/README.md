@@ -17,11 +17,13 @@ Participants who are eligible for the local category but opts in for the open ca
 There will be an onsite finals for the top 20 teams in the local category. Each team may send up to 4 people for the onsite finals.
 
 ## Timeline
+
 | dates                                  | events                    |
 | :------------------------------------- | :------------------------ |
 | 31 May, 8pm to 1 June, 8pm (GMT+8)     | Qualifiers, Online        |
 | 28 June, 10am to 29 June, 10am (GMT+8) | Finals @ NUS COM1         |
 | 5 July, 9am to 5.30pm (GMT+8)          | GreyCTF Summit @ NUS COM1 |
+
 
 ## Prizes
 <table>

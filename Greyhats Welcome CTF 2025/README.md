@@ -10,9 +10,11 @@
 This is a (supposedly) beginner-friendly CTF hosted by the NUS Greyhats.
 
 ## Timeline
+
 | dates                                    | events                    |
 | :--------------------------------------- | :------------------------ |
 | 16 August, 9am to 17 August, 9pm (GMT+8) | Online CTF                |
+
 
 # Stats
 <table>
