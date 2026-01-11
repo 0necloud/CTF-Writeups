@@ -92,6 +92,6 @@ This vulnerability presents a serious risk as it allows an attacker to execute a
 ## Remediation
 To remediate the vulnerability, the regular expression should be changed from `/^[a-zA-Z0-9_-]+$/` to `/\A[a-zA-Z0-9_-]+\z/` to match the entire user input string.
 
-Additionally, a whitelist/blacklist of allowed/disalllowed words can be used to ensure that user input is further restricted.
+Additionally, a whitelist/blacklist of allowed/disallowed words can be used to ensure that user input is further restricted.
 
 ![Challenge Completed](./images/pwned.jpg)

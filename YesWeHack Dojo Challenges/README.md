@@ -6,6 +6,7 @@
 - [#41 - Ruby Treasure](./41%20-%20Ruby%20Treasure/)
 - [#42 - Hex Color Palette](./42%20-%20Hex%20Color%20Palette/)
 - [#43 - CCTV Manager](./43%20-%20CCTV%20Manager/)
+- [#46 - Ghost Whisper](./46%20-%20Ghost%20Whisper/)
 
 ## About
 As quoted from their website:
